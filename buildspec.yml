@@ -5,10 +5,13 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt
+      - pip install pytest  # Ensure pytest is installed
+
   build:
     commands:
       - echo "Running unit tests..."
-      - python -m pytest
+      - python -m pytest tests/ --verbose --disable-warnings || exit 1  # Run pytest in the tests/ directory
+
 artifacts:
   files:
     - '**/*'
